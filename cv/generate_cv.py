@@ -32,7 +32,7 @@ RULE = "#d9d9d9"
 CSS = f"""
 @page {{
     size: A4;
-    margin: 9mm 13mm 9mm 13mm;
+    margin: 8mm 13mm 8mm 13mm;
 }}
 * {{ box-sizing: border-box; }}
 html {{ -weasy-hyphens: none; }}
@@ -40,7 +40,7 @@ body {{
     font-family: "Liberation Sans", "Arial", "Noto Sans", sans-serif;
     color: {INK};
     font-size: 9pt;
-    line-height: 1.22;
+    line-height: 1.2;
     margin: 0;
 }}
 a {{ color: {ACCENT_DARK}; text-decoration: none; border-bottom: 1px solid {ACCENT}; }}
@@ -74,7 +74,7 @@ a {{ color: {ACCENT_DARK}; text-decoration: none; border-bottom: 1px solid {ACCE
 }}
 
 /* ---------- Sections ---------- */
-.section {{ margin-top: 4px; }}
+.section {{ margin-top: 3px; }}
 .section h2 {{
     font-size: 10.5pt;
     font-weight: 700;
@@ -88,7 +88,7 @@ a {{ color: {ACCENT_DARK}; text-decoration: none; border-bottom: 1px solid {ACCE
 p.summary {{ margin: 0; text-align: justify; }}
 
 /* ---------- Entries (experience / education) ---------- */
-.entry {{ margin-bottom: 4px; }}
+.entry {{ margin-bottom: 3px; }}
 .entry:last-child {{ margin-bottom: 0; }}
 .entry-head {{
     display: flex;
@@ -123,6 +123,15 @@ ul.bullets li::marker {{ color: {ACCENT}; }}
 .interests {{ margin: 0; color: {MUTED}; }}
 .inline-list {{ margin: 0; color: {MUTED}; }}
 .inline-list b {{ color: {INK}; }}
+.footer {{
+    margin: 3px 0 0 0;
+    padding-top: 2px;
+    border-top: 1px solid {RULE};
+    font-size: 6.5pt;
+    color: {MUTED};
+    font-style: italic;
+    line-height: 1.2;
+}}
 """
 
 
@@ -137,6 +146,8 @@ def render_header(cv):
         f'<a href="{esc(c["linkedin_url"])}">{esc(lbl["linkedin"])}</a>'
         f'<span class="sep">|</span>'
         f'<a href="{esc(c["portfolio_url"])}">{esc(lbl["portfolio"])}</a>'
+        f'<span class="sep">|</span>'
+        f'<a href="{esc(c["github_url"])}">{esc(lbl["github"])}</a>'
     )
     contact_line = (
         f'{esc(cv["location"])}<span class="sep">|</span>'
@@ -237,6 +248,8 @@ def build_html(cv):
         + render_certifications(cv)
         + render_interests(cv)
     )
+    if cv.get("footer"):
+        body += f'<p class="footer">{esc(cv["footer"])}</p>'
     return (
         f'<!DOCTYPE html><html lang="{cv["lang"]}"><head>'
         f'<meta charset="utf-8"><style>{CSS}</style></head>'

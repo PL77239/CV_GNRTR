@@ -3,6 +3,9 @@
 
 Kept as structured data so both language versions share the exact same,
 ATS-friendly layout and only the text differs.
+
+Primary focus: 3D modelling / product design, with Front-end Development & IT
+as a versatile secondary track.
 """
 
 # Shared contact details (identical in both versions).
@@ -10,19 +13,21 @@ CONTACT = {
     "name": "Jan Błaż",
     "phone": "+48 697 655 050",
     "email": "jmtentertainment777@gmail.com",
-    # Links preserved exactly from the original CV; both stay clickable.
+    # Links preserved / derived from the original CV; all stay clickable.
     "linkedin_url": "http://www.linkedin.com/in/jan-b%C5%82a%C5%BC-39b0523a5",
     "portfolio_url": "https://guapdad8k.github.io/WEB-PORTFOLIO/",
+    "github_url": "https://github.com/guapdad8k",
 }
 
 CV_EN = {
     "lang": "en",
     "contact": CONTACT,
     "location": "Warsaw, Poland",
-    "headline": "Front-end Developer  •  IT Support  •  3D CAD Designer",
+    "headline": "3D Modeler & Product Designer  •  Front-end Developer  •  IT",
     "labels": {
         "linkedin": "LinkedIn",
         "portfolio": "Portfolio",
+        "github": "GitHub",
         "summary": "Professional Summary",
         "experience": "Professional Experience",
         "education": "Education",
@@ -33,34 +38,35 @@ CV_EN = {
         "present": "Present",
     },
     "summary": (
-        "IT student specialising in Front-end Development, combining hands-on technical skills "
-        "with several years of experience in sales, marketing and B2B development across "
-        "international markets. Comfortable with HTML, C#, Python and SQL as well as CAD/3D design, "
-        "with a strong interest in programming, cybersecurity and databases. Seeking a part-time "
-        "role to grow within IT alongside full-time studies; open to internships."
+        "3D modeler and product designer with commercial experience building game-ready assets "
+        "and functional, 3D-printed automotive parts. Skilled across Blender, 3ds Max, Maya, "
+        "SolidWorks, Fusion 360 and Rhino 3D, with a solid Front-end Development base (web, IT, "
+        "cybersecurity) and several years of B2B sales and marketing experience. Seeking a "
+        "part-time role in 3D/product design or IT alongside full-time studies; open to internships."
     ),
     "experience": [
-        {
-            "role": "Sales & Marketing Assistant",
-            "org": "Independent Traders & Consultants",
-            "location": "Warsaw, Poland",
-            "dates": "2023 – Mar 2026",
-            "bullets": [
-                "Introduced and positioned foreign brands in the Polish and CEE markets.",
-                "Organised and coordinated B2B meetings and industry trade fairs.",
-                "Conducted market research to identify new opportunities and partners.",
-                "Provided day-to-day IT support to the team.",
-            ],
-        },
         {
             "role": "3D Designer (Freelance)",
             "org": "Self-employed",
             "location": "Remote",
             "dates": "2023 – Present",
             "bullets": [
-                "Design technical CAD models for the automotive sector.",
-                "Create abstract 3D assets for games and bespoke client projects.",
-                "Deliver commercial 3D work from concept to final model.",
+                "Design and produce game-ready 3D models, including ~10 car models for racing titles such as Assetto Corsa.",
+                "Design and 3D-print 10+ functional automotive parts; one is currently being reproduced in glass fibre for production.",
+                "Build technical CAD models for automotive use and abstract 3D assets for games and bespoke client projects.",
+                "Deliver commercial 3D work end-to-end, from concept to final model or print.",
+            ],
+        },
+        {
+            "role": "Sales & Marketing Assistant",
+            "org": "Independent Traders & Consultants",
+            "location": "Warsaw, Poland",
+            "dates": "2023 – Mar 2026",
+            "bullets": [
+                "Introduced 20+ foreign suppliers and brands to the Polish and CEE markets.",
+                "Organised 4 industry trade fairs in Poland and coordinated B2B meetings.",
+                "Conducted market research to identify new opportunities and partners.",
+                "Provided day-to-day IT support to the team.",
             ],
         },
         {
@@ -112,13 +118,6 @@ CV_EN = {
             "note": "",
         },
         {
-            "degree": "Study & career break (health reasons)",
-            "org": "",
-            "location": "",
-            "dates": "2023 – 2025",
-            "note": "",
-        },
-        {
             "degree": "Automotive Engineering",
             "org": "Politecnico di Torino",
             "location": "Turin, Italy",
@@ -134,11 +133,10 @@ CV_EN = {
         },
     ],
     "skills": [
-        {"group": "Programming & Web", "items": "HTML, C#, Python, SQL (SSMS), Java (learning)"},
-        {"group": "3D & CAD", "items": "Fusion 360, technical CAD modelling, 3D asset design"},
-        {"group": "Tools & Software", "items": "Visual Studio, Microsoft Office 365, Adobe Photoshop"},
-        {"group": "Audio Production", "items": "Logic Pro, FL Studio"},
-        {"group": "Areas of interest", "items": "Cybersecurity, Front-end Development, Databases"},
+        {"group": "3D Modelling & CAD", "items": "Blender, 3ds Max, Maya, SolidWorks, Fusion 360, Rhino 3D; 3D printing, product design, game assets; Photoshop"},
+        {"group": "Front-end & Web", "items": "HTML, CSS, JavaScript, React, Node.js, Git"},
+        {"group": "Programming & Data", "items": "Python, C#, SQL (SSMS)"},
+        {"group": "Focus areas", "items": "3D & product development, Front-end Development, IT, Cybersecurity"},
     ],
     "languages": [
         {"name": "Polish", "level": "Native"},
@@ -151,17 +149,19 @@ CV_EN = {
     "certifications": [
         "TOEFL English Certificate",
     ],
-    "interests": "Travel · Music production · Automotive engineering & motorsport · Basketball · 3D design & programming",
+    "interests": "Travel · Automotive engineering & motorsport · Basketball · 3D printing & product design",
+    "footer": "",
 }
 
 CV_PL = {
     "lang": "pl",
     "contact": CONTACT,
     "location": "Warszawa, Polska",
-    "headline": "Front-end Developer  •  Wsparcie IT  •  Projektant 3D CAD",
+    "headline": "Modelarz 3D i projektant produktu  •  Front-end Developer  •  IT",
     "labels": {
         "linkedin": "LinkedIn",
         "portfolio": "Portfolio",
+        "github": "GitHub",
         "summary": "Podsumowanie zawodowe",
         "experience": "Doświadczenie zawodowe",
         "education": "Wykształcenie",
@@ -172,35 +172,36 @@ CV_PL = {
         "present": "obecnie",
     },
     "summary": (
-        "Student informatyki na kierunku Front-end Development, łączący praktyczne umiejętności "
-        "techniczne z kilkuletnim doświadczeniem w sprzedaży, marketingu i rozwoju biznesu B2B na "
-        "rynkach międzynarodowych. Swobodnie posługuję się HTML, C#, Python i SQL oraz "
-        "projektowaniem CAD/3D, ze szczególnym zainteresowaniem programowaniem, cyberbezpieczeństwem "
-        "i bazami danych. Poszukuję pracy w niepełnym wymiarze godzin, aby rozwijać się w IT "
-        "równolegle ze studiami dziennymi; jestem otwarty również na staże."
+        "Modelarz 3D i projektant produktu z komercyjnym doświadczeniem w tworzeniu modeli do gier "
+        "oraz funkcjonalnych, drukowanych 3D części samochodowych. Biegły w programach Blender, "
+        "3ds Max, Maya, SolidWorks, Fusion 360 i Rhino 3D, z solidną podstawą Front-end Development "
+        "(web, IT, cyberbezpieczeństwo) i kilkuletnim doświadczeniem w sprzedaży oraz marketingu B2B. "
+        "Poszukuję pracy w niepełnym wymiarze godzin w obszarze 3D/projektowania produktu lub IT, "
+        "równolegle ze studiami dziennymi; otwarty również na staże."
     ),
     "experience": [
-        {
-            "role": "Asystent ds. sprzedaży i marketingu",
-            "org": "Independent Traders & Consultants",
-            "location": "Warszawa, Polska",
-            "dates": "2023 – marzec 2026",
-            "bullets": [
-                "Wprowadzanie i pozycjonowanie zagranicznych marek na rynku polskim i CEE.",
-                "Organizacja i koordynacja spotkań B2B oraz targów branżowych.",
-                "Prowadzenie badań rynku w celu identyfikacji szans i partnerów.",
-                "Bieżące wsparcie IT dla zespołu.",
-            ],
-        },
         {
             "role": "Projektant 3D (freelance)",
             "org": "Działalność własna",
             "location": "Zdalnie",
             "dates": "2023 – obecnie",
             "bullets": [
-                "Projektowanie technicznych modeli CAD dla branży motoryzacyjnej.",
-                "Tworzenie abstrakcyjnych obiektów 3D do gier i indywidualnych projektów klientów.",
-                "Realizacja komercyjnych zleceń 3D od koncepcji po gotowy model.",
+                "Tworzenie modeli 3D gotowych do gier, w tym ok. 10 modeli samochodów do tytułów wyścigowych, takich jak Assetto Corsa.",
+                "Projektowanie i druk 3D ponad 10 funkcjonalnych części samochodowych; jedna z nich jest obecnie odtwarzana z włókna szklanego do produkcji.",
+                "Budowa technicznych modeli CAD do zastosowań motoryzacyjnych oraz abstrakcyjnych obiektów 3D do gier i indywidualnych projektów klientów.",
+                "Realizacja komercyjnych zleceń 3D od koncepcji po gotowy model lub wydruk.",
+            ],
+        },
+        {
+            "role": "Asystent ds. sprzedaży i marketingu",
+            "org": "Independent Traders & Consultants",
+            "location": "Warszawa, Polska",
+            "dates": "2023 – marzec 2026",
+            "bullets": [
+                "Wprowadzenie ponad 20 zagranicznych dostawców i marek na rynek polski i CEE.",
+                "Organizacja 4 targów branżowych w Polsce oraz koordynacja spotkań B2B.",
+                "Prowadzenie badań rynku w celu identyfikacji szans i partnerów.",
+                "Bieżące wsparcie IT dla zespołu.",
             ],
         },
         {
@@ -252,13 +253,6 @@ CV_PL = {
             "note": "",
         },
         {
-            "degree": "Przerwa w nauce i karierze (powody zdrowotne)",
-            "org": "",
-            "location": "",
-            "dates": "2023 – 2025",
-            "note": "",
-        },
-        {
             "degree": "Inżynieria samochodowa",
             "org": "Politecnico di Torino",
             "location": "Turyn, Włochy",
@@ -274,11 +268,10 @@ CV_PL = {
         },
     ],
     "skills": [
-        {"group": "Programowanie i web", "items": "HTML, C#, Python, SQL (SSMS), Java (w nauce)"},
-        {"group": "3D i CAD", "items": "Fusion 360, techniczne modelowanie CAD, projektowanie obiektów 3D"},
-        {"group": "Narzędzia i oprogramowanie", "items": "Visual Studio, Microsoft Office 365, Adobe Photoshop"},
-        {"group": "Produkcja muzyczna", "items": "Logic Pro, FL Studio"},
-        {"group": "Obszary zainteresowań", "items": "Cyberbezpieczeństwo, Front-end Development, bazy danych"},
+        {"group": "Modelowanie 3D i CAD", "items": "Blender, 3ds Max, Maya, SolidWorks, Fusion 360, Rhino 3D; druk 3D, projektowanie produktu, obiekty do gier; Photoshop"},
+        {"group": "Front-end i web", "items": "HTML, CSS, JavaScript, React, Node.js, Git"},
+        {"group": "Programowanie i dane", "items": "Python, C#, SQL (SSMS)"},
+        {"group": "Obszary rozwoju", "items": "3D i rozwój produktu, Front-end Development, IT, cyberbezpieczeństwo"},
     ],
     "languages": [
         {"name": "Polski", "level": "Ojczysty"},
@@ -291,5 +284,9 @@ CV_PL = {
     "certifications": [
         "Certyfikat języka angielskiego TOEFL",
     ],
-    "interests": "Podróże · Produkcja muzyczna · Inżynieria samochodowa i motorsport · Koszykówka · Projektowanie 3D i programowanie",
+    "interests": "Podróże · Inżynieria samochodowa i motorsport · Koszykówka · Druk 3D i projektowanie produktu",
+    "footer": (
+        "Wyrażam zgodę na przetwarzanie moich danych osobowych na potrzeby procesu rekrutacji "
+        "(zgodnie z RODO – Rozporządzenie UE 2016/679)."
+    ),
 }
