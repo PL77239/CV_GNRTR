@@ -23,11 +23,46 @@ from weasyprint import HTML
 
 from cv_data import CV_EN, CV_PL
 
-ACCENT = "#2f8f4e"          # refined, professional green (nod to original brand)
-ACCENT_DARK = "#1f6b39"
-INK = "#1c1c1c"
-MUTED = "#555555"
-RULE = "#d9d9d9"
+# ---------------------------------------------------------------------------
+# Visual motives. Switch the whole CV look by changing ACTIVE_THEME.
+# All themes stay ATS-safe: real text, single column, standard headings.
+# ---------------------------------------------------------------------------
+THEMES = {
+    # Current motive: professional navy header band with warm amber accents.
+    "navy": {
+        "primary": "#123252",
+        "accent": "#cf8a2e",
+        "accent_dark": "#9c631a",
+        "ink": "#1d2733",
+        "muted": "#586170",
+        "rule": "#dde1e7",
+        "banner_text": "#e9eef4",
+        "banner_link": "#f2c680",
+    },
+    # Original motive (kept for easy switching): light header, green accents.
+    "green": {
+        "primary": "#2f8f4e",
+        "accent": "#2f8f4e",
+        "accent_dark": "#1f6b39",
+        "ink": "#1c1c1c",
+        "muted": "#555555",
+        "rule": "#d9d9d9",
+        "banner_text": "#eaf5ee",
+        "banner_link": "#d8f2e0",
+    },
+}
+
+ACTIVE_THEME = "navy"
+
+_T = THEMES[ACTIVE_THEME]
+PRIMARY = _T["primary"]
+ACCENT = _T["accent"]
+ACCENT_DARK = _T["accent_dark"]
+INK = _T["ink"]
+MUTED = _T["muted"]
+RULE = _T["rule"]
+BANNER_TEXT = _T["banner_text"]
+BANNER_LINK = _T["banner_link"]
 
 CSS = f"""
 @page {{
@@ -45,33 +80,33 @@ body {{
 }}
 a {{ color: {ACCENT_DARK}; text-decoration: none; border-bottom: 1px solid {ACCENT}; }}
 
-/* ---------- Header ---------- */
+/* ---------- Header banner (full-bleed) ---------- */
+.banner {{
+    background: {PRIMARY};
+    margin: -8mm -13mm 5px -13mm;
+    padding: 5mm 13mm 2.5mm 13mm;
+}}
 .name {{
     font-size: 23pt;
     font-weight: 700;
     letter-spacing: 0.5px;
-    color: {INK};
+    color: #ffffff;
     margin: 0;
 }}
 .headline {{
     font-size: 10pt;
     font-weight: 700;
-    color: {ACCENT_DARK};
-    margin: 2px 0 4px 0;
+    color: {ACCENT};
+    margin: 2px 0 5px 0;
     letter-spacing: 0.3px;
 }}
 .contact {{
     font-size: 8.5pt;
-    color: {MUTED};
-    line-height: 1.5;
+    color: {BANNER_TEXT};
+    line-height: 1.4;
 }}
-.contact .sep {{ color: {RULE}; padding: 0 5px; }}
-.header-rule {{
-    height: 2.5px;
-    background: {ACCENT};
-    border: 0;
-    margin: 5px 0 2px 0;
-}}
+.contact .sep {{ color: rgba(255,255,255,0.35); padding: 0 5px; }}
+.contact a {{ color: {BANNER_LINK}; border-bottom: 1px solid {BANNER_LINK}; }}
 
 /* ---------- Sections ---------- */
 .section {{ margin-top: 3px; }}
@@ -80,10 +115,19 @@ a {{ color: {ACCENT_DARK}; text-decoration: none; border-bottom: 1px solid {ACCE
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.1px;
-    color: {ACCENT_DARK};
+    color: {PRIMARY};
     margin: 0 0 4px 0;
     padding-bottom: 2px;
-    border-bottom: 1.5px solid {RULE};
+    border-bottom: 1.5px solid {ACCENT};
+}}
+.section h2::before {{
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: {ACCENT};
+    margin-right: 7px;
+    vertical-align: 12%;
 }}
 p.summary {{ margin: 0; text-align: justify; }}
 
@@ -97,7 +141,7 @@ p.summary {{ margin: 0; text-align: justify; }}
     gap: 12px;
 }}
 .entry-title {{ font-weight: 700; font-size: 10pt; color: {INK}; }}
-.entry-org {{ font-size: 9pt; color: {ACCENT_DARK}; font-weight: 600; }}
+.entry-org {{ font-size: 9pt; color: {PRIMARY}; font-weight: 700; }}
 .entry-dates {{
     font-size: 8.5pt;
     color: {MUTED};
@@ -156,11 +200,10 @@ def render_header(cv):
         f'<span class="sep">|</span>{links}'
     )
     return (
-        f'<div class="header">'
+        f'<div class="banner">'
         f'<h1 class="name">{esc(c["name"])}</h1>'
         f'<div class="headline">{esc(cv["headline"])}</div>'
         f'<div class="contact">{contact_line}</div>'
-        f'<hr class="header-rule"/>'
         f'</div>'
     )
 
