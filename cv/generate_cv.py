@@ -83,8 +83,8 @@ a {{ color: {ACCENT_DARK}; text-decoration: none; border-bottom: 1px solid {ACCE
 /* ---------- Header banner (full-bleed) ---------- */
 .banner {{
     background: {PRIMARY};
-    margin: -8mm -13mm 5px -13mm;
-    padding: 5mm 13mm 2.5mm 13mm;
+    margin: -8mm -13mm 4px -13mm;
+    padding: 4mm 13mm 1.5mm 13mm;
 }}
 .name {{
     font-size: 23pt;

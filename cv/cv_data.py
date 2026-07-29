@@ -23,7 +23,7 @@ CV_EN = {
     "lang": "en",
     "contact": CONTACT,
     "location": "Warsaw, Poland",
-    "headline": "3D Modeler & Product Designer  •  Front-end Developer  •  IT",
+    "headline": "3D Modeler & Product Designer  •  Front-end Developer  •  IT  •  Marketing",
     "labels": {
         "linkedin": "LinkedIn",
         "portfolio": "Portfolio",
@@ -41,9 +41,9 @@ CV_EN = {
         "3D modeler and product designer with commercial experience across game-ready assets, "
         "functional 3D-printed automotive parts and music production. Skilled across Blender, "
         "3ds Max, Maya, SolidWorks, Fusion 360 and Rhino 3D, with a solid Front-end Development "
-        "base (web, IT, cybersecurity) and several years of B2B sales and marketing experience. "
-        "Seeking a part-time role in 3D/product design or IT alongside full-time studies; open to "
-        "internships."
+        "base (web, IT, cybersecurity) and several years of B2B sales and marketing experience — "
+        "including brand launches, trade-fair organisation and client relationship management. "
+        "Open to roles in 3D/product design, IT or marketing, including internships."
     ),
     "experience": [
         {
@@ -138,11 +138,12 @@ CV_EN = {
         {"group": "Front-end & Web", "items": "HTML, CSS, JavaScript, React, Node.js, Git"},
         {"group": "Programming & Data", "items": "Python, C#, SQL (SSMS)"},
         {"group": "Audio & Sound Design", "items": "Logic Pro, FL Studio, Ableton; sound design, mixing"},
+        {"group": "Office & Productivity", "items": "Microsoft Office (Word, Excel, PowerPoint)"},
     ],
     "languages": [
         {"name": "Polish", "level": "Native"},
         {"name": "English", "level": "Advanced (C1, TOEFL certified)"},
-        {"name": "Spanish", "level": "Intermediate (B1)"},
+        {"name": "Spanish", "level": "Advanced (C1)"},
         {"name": "Japanese", "level": "Elementary (A2)"},
         {"name": "French", "level": "Elementary (A2)"},
         {"name": "Italian", "level": "Basic (A1)"},
@@ -158,7 +159,7 @@ CV_PL = {
     "lang": "pl",
     "contact": CONTACT,
     "location": "Warszawa, Polska",
-    "headline": "Modelarz 3D i projektant produktu  •  Front-end Developer  •  IT",
+    "headline": "Modelarz 3D i projektant produktu  •  Front-end Developer  •  IT  •  Marketing",
     "labels": {
         "linkedin": "LinkedIn",
         "portfolio": "Portfolio",
@@ -177,8 +178,8 @@ CV_PL = {
         "funkcjonalnych drukowanych 3D części samochodowych oraz produkcji muzycznej. Biegły w "
         "programach Blender, 3ds Max, Maya, SolidWorks, Fusion 360 i Rhino 3D, z solidną podstawą "
         "Front-end Development (web, IT, cyberbezpieczeństwo) i kilkuletnim doświadczeniem w "
-        "sprzedaży oraz marketingu B2B. Poszukuję pracy w niepełnym wymiarze godzin w obszarze "
-        "3D/projektowania produktu lub IT, równolegle ze studiami dziennymi; otwarty również na staże."
+        "sprzedaży i marketingu B2B (wprowadzanie marek, organizacja targów, relacje z klientami). "
+        "Otwarty na role w obszarze 3D/projektowania produktu, IT lub marketingu, w tym staże."
     ),
     "experience": [
         {
@@ -273,11 +274,12 @@ CV_PL = {
         {"group": "Front-end i web", "items": "HTML, CSS, JavaScript, React, Node.js, Git"},
         {"group": "Programowanie i dane", "items": "Python, C#, SQL (SSMS)"},
         {"group": "Produkcja muzyczna i dźwięk", "items": "Logic Pro, FL Studio, Ableton; sound design, miksowanie"},
+        {"group": "Office i produktywność", "items": "Microsoft Office (Word, Excel, PowerPoint)"},
     ],
     "languages": [
         {"name": "Polski", "level": "Ojczysty"},
         {"name": "Angielski", "level": "Zaawansowany (C1, certyfikat TOEFL)"},
-        {"name": "Hiszpański", "level": "Średnio zaawansowany (B1)"},
+        {"name": "Hiszpański", "level": "Zaawansowany (C1)"},
         {"name": "Japoński", "level": "Podstawowy (A2)"},
         {"name": "Francuski", "level": "Podstawowy (A2)"},
         {"name": "Włoski", "level": "Podstawowy (A1)"},
