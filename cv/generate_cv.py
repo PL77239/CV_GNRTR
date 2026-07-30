@@ -28,8 +28,22 @@ from cv_data import CV_EN, CV_PL
 # All themes stay ATS-safe: real text, single column, standard headings.
 # ---------------------------------------------------------------------------
 THEMES = {
-    # Current motive: professional navy header band with warm amber accents.
+    # Editorial motive: no colour band, warm burgundy accent, headings
+    # underlined only beneath the text.
+    "editorial": {
+        "style": "editorial",
+        "primary": "#5a1f27",
+        "accent": "#9b2d39",
+        "accent_dark": "#7a2531",
+        "ink": "#222222",
+        "muted": "#5b5b5b",
+        "rule": "#e2d9da",
+        "banner_text": "#ffffff",
+        "banner_link": "#ffffff",
+    },
+    # Professional navy header band with warm amber accents.
     "navy": {
+        "style": "band",
         "primary": "#123252",
         "accent": "#cf8a2e",
         "accent_dark": "#9c631a",
@@ -39,8 +53,9 @@ THEMES = {
         "banner_text": "#e9eef4",
         "banner_link": "#f2c680",
     },
-    # Original motive (kept for easy switching): light header, green accents.
+    # Original motive: light header, green accents, full-width rules.
     "green": {
+        "style": "classic",
         "primary": "#2f8f4e",
         "accent": "#2f8f4e",
         "accent_dark": "#1f6b39",
@@ -52,9 +67,10 @@ THEMES = {
     },
 }
 
-ACTIVE_THEME = "navy"
+ACTIVE_THEME = "editorial"
 
 _T = THEMES[ACTIVE_THEME]
+STYLE = _T["style"]
 PRIMARY = _T["primary"]
 ACCENT = _T["accent"]
 ACCENT_DARK = _T["accent_dark"]
@@ -63,6 +79,69 @@ MUTED = _T["muted"]
 RULE = _T["rule"]
 BANNER_TEXT = _T["banner_text"]
 BANNER_LINK = _T["banner_link"]
+
+# Organisation-name colour: primary on the dark band, accent otherwise.
+ORG_COLOR = PRIMARY if STYLE == "band" else ACCENT
+
+
+def _header_css():
+    """Header styling differs per motive (band vs plain header)."""
+    if STYLE == "band":
+        return f"""
+.header {{
+    background: {PRIMARY};
+    margin: -8mm -13mm 4px -13mm;
+    padding: 4mm 13mm 1.5mm 13mm;
+}}
+.name {{ font-size: 23pt; font-weight: 700; letter-spacing: 0.5px; color: #ffffff; margin: 0; }}
+.headline {{ font-size: 10pt; font-weight: 700; color: {ACCENT}; margin: 2px 0 5px 0; letter-spacing: 0.3px; }}
+.contact {{ font-size: 8.5pt; color: {BANNER_TEXT}; line-height: 1.4; }}
+.contact .sep {{ color: rgba(255,255,255,0.35); padding: 0 5px; }}
+.contact a {{ color: {BANNER_LINK}; border-bottom: 1px solid {BANNER_LINK}; }}
+"""
+    # "editorial" and "classic" share a plain (light) header.
+    name_tt = "text-transform: uppercase; letter-spacing: 2px;" if STYLE == "editorial" else "letter-spacing: 0.5px;"
+    border = f"border-bottom: 2px solid {ACCENT};" if STYLE == "editorial" else f"border-bottom: 2.5px solid {ACCENT};"
+    return f"""
+.header {{ margin: 0 0 5px 0; padding-bottom: 3px; {border} }}
+.name {{ font-size: 21pt; font-weight: 700; {name_tt} color: {INK}; margin: 0; }}
+.headline {{ font-size: 10pt; font-weight: 700; color: {ACCENT}; margin: 2px 0 3px 0;
+    text-transform: uppercase; letter-spacing: 0.6px; }}
+.contact {{ font-size: 8.5pt; color: {MUTED}; line-height: 1.35; }}
+.contact .sep {{ color: {RULE}; padding: 0 5px; }}
+"""
+
+
+def _heading_css():
+    """Section-heading styling differs per motive."""
+    if STYLE == "editorial":
+        return f"""
+.section h2 {{
+    display: inline-block;
+    font-size: 10.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px;
+    color: {ACCENT}; margin: 0 0 4px 0; padding-bottom: 1px;
+    border-bottom: 2px solid {ACCENT};
+}}
+"""
+    if STYLE == "band":
+        return f"""
+.section h2 {{
+    font-size: 10.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px;
+    color: {PRIMARY}; margin: 0 0 4px 0; padding-bottom: 2px; border-bottom: 1.5px solid {ACCENT};
+}}
+.section h2::before {{
+    content: ""; display: inline-block; width: 7px; height: 7px;
+    background: {ACCENT}; margin-right: 7px; vertical-align: 12%;
+}}
+"""
+    # classic
+    return f"""
+.section h2 {{
+    font-size: 10.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.1px;
+    color: {ACCENT_DARK}; margin: 0 0 4px 0; padding-bottom: 2px; border-bottom: 1.5px solid {RULE};
+}}
+"""
+
 
 CSS = f"""
 @page {{
@@ -80,55 +159,12 @@ body {{
 }}
 a {{ color: {ACCENT_DARK}; text-decoration: none; border-bottom: 1px solid {ACCENT}; }}
 
-/* ---------- Header banner (full-bleed) ---------- */
-.banner {{
-    background: {PRIMARY};
-    margin: -8mm -13mm 4px -13mm;
-    padding: 4mm 13mm 1.5mm 13mm;
-}}
-.name {{
-    font-size: 23pt;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: #ffffff;
-    margin: 0;
-}}
-.headline {{
-    font-size: 10pt;
-    font-weight: 700;
-    color: {ACCENT};
-    margin: 2px 0 5px 0;
-    letter-spacing: 0.3px;
-}}
-.contact {{
-    font-size: 8.5pt;
-    color: {BANNER_TEXT};
-    line-height: 1.4;
-}}
-.contact .sep {{ color: rgba(255,255,255,0.35); padding: 0 5px; }}
-.contact a {{ color: {BANNER_LINK}; border-bottom: 1px solid {BANNER_LINK}; }}
+/* ---------- Header (per-motive) ---------- */
+{_header_css()}
 
 /* ---------- Sections ---------- */
-.section {{ margin-top: 3px; }}
-.section h2 {{
-    font-size: 10.5pt;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.1px;
-    color: {PRIMARY};
-    margin: 0 0 4px 0;
-    padding-bottom: 2px;
-    border-bottom: 1.5px solid {ACCENT};
-}}
-.section h2::before {{
-    content: "";
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    background: {ACCENT};
-    margin-right: 7px;
-    vertical-align: 12%;
-}}
+.section {{ margin-top: 2px; }}
+{_heading_css()}
 p.summary {{ margin: 0; text-align: justify; }}
 
 /* ---------- Entries (experience / education) ---------- */
@@ -141,7 +177,7 @@ p.summary {{ margin: 0; text-align: justify; }}
     gap: 12px;
 }}
 .entry-title {{ font-weight: 700; font-size: 10pt; color: {INK}; }}
-.entry-org {{ font-size: 9pt; color: {PRIMARY}; font-weight: 700; }}
+.entry-org {{ font-size: 9pt; color: {ORG_COLOR}; font-weight: 700; }}
 .entry-dates {{
     font-size: 8.5pt;
     color: {MUTED};
@@ -200,7 +236,7 @@ def render_header(cv):
         f'<span class="sep">|</span>{links}'
     )
     return (
-        f'<div class="banner">'
+        f'<div class="header">'
         f'<h1 class="name">{esc(c["name"])}</h1>'
         f'<div class="headline">{esc(cv["headline"])}</div>'
         f'<div class="contact">{contact_line}</div>'
