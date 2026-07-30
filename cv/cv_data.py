@@ -67,7 +67,6 @@ CV_EN = {
                 "Introduced 20+ foreign suppliers and brands to the Polish and CEE markets.",
                 "Organised 4 industry trade fairs in Poland and coordinated B2B meetings.",
                 "Conducted market research to identify new opportunities and partners.",
-                "Provided day-to-day IT support to the team.",
             ],
         },
         {
@@ -78,7 +77,6 @@ CV_EN = {
             "bullets": [
                 "Monitored and maintained marketing and customer databases.",
                 "Acquired new clients and business partners.",
-                "Organised business meetings and trips.",
                 "Provided IT support across the team.",
             ],
         },
@@ -87,27 +85,24 @@ CV_EN = {
             "org": "SentiOne",
             "location": "Poland",
             "dates": "2019 – 2020",
-            "bullets": [
-                "Generated and qualified cold leads and ran outreach to prospective clients.",
-            ],
+            "compact": True,
+            "bullets": [],
         },
         {
             "role": "Work & Travel Programme",
             "org": "Tokyo, Japan",
-            "location": "Japan",
+            "location": "",
             "dates": "2019",
-            "bullets": [
-                "Gained international work experience and cross-cultural communication skills.",
-            ],
+            "compact": True,
+            "bullets": [],
         },
         {
             "role": "Door-to-Door Sales Representative",
             "org": "Energy Match",
             "location": "Poland",
             "dates": "2018 – 2019",
-            "bullets": [
-                "Carried out direct door-to-door sales and client acquisition.",
-            ],
+            "compact": True,
+            "bullets": [],
         },
     ],
     "education": [
@@ -203,7 +198,6 @@ CV_PL = {
                 "Wprowadzenie ponad 20 zagranicznych dostawców i marek na rynek polski i CEE.",
                 "Organizacja 4 targów branżowych w Polsce oraz koordynacja spotkań B2B.",
                 "Prowadzenie badań rynku w celu identyfikacji szans i partnerów.",
-                "Bieżące wsparcie IT dla zespołu.",
             ],
         },
         {
@@ -214,7 +208,6 @@ CV_PL = {
             "bullets": [
                 "Monitorowanie i utrzymanie baz danych marketingowych i klientów.",
                 "Pozyskiwanie nowych klientów oraz partnerów biznesowych.",
-                "Organizacja spotkań i wyjazdów biznesowych.",
                 "Wsparcie IT w zespole.",
             ],
         },
@@ -223,27 +216,24 @@ CV_PL = {
             "org": "SentiOne",
             "location": "Polska",
             "dates": "2019 – 2020",
-            "bullets": [
-                "Generowanie i kwalifikacja zimnych leadów oraz kontakt z potencjalnymi klientami.",
-            ],
+            "compact": True,
+            "bullets": [],
         },
         {
             "role": "Program Work & Travel",
             "org": "Tokio, Japonia",
-            "location": "Japonia",
+            "location": "",
             "dates": "2019",
-            "bullets": [
-                "Zdobycie międzynarodowego doświadczenia zawodowego i umiejętności komunikacji międzykulturowej.",
-            ],
+            "compact": True,
+            "bullets": [],
         },
         {
             "role": "Przedstawiciel handlowy D2D",
             "org": "Energy Match",
             "location": "Polska",
             "dates": "2018 – 2019",
-            "bullets": [
-                "Bezpośrednia sprzedaż door-to-door i pozyskiwanie klientów.",
-            ],
+            "compact": True,
+            "bullets": [],
         },
     ],
     "education": [

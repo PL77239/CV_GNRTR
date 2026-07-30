@@ -28,6 +28,19 @@ from cv_data import CV_EN, CV_PL
 # All themes stay ATS-safe: real text, single column, standard headings.
 # ---------------------------------------------------------------------------
 THEMES = {
+    # Modern motive (2026 standard): single column, body 10pt / headings 12pt,
+    # full-width section separator bars for fast human scanning.
+    "modern": {
+        "style": "modern",
+        "primary": "#16324e",
+        "accent": "#2f6db3",
+        "accent_dark": "#245891",
+        "ink": "#1e2732",
+        "muted": "#586170",
+        "rule": "#c9ced6",
+        "banner_text": "#ffffff",
+        "banner_link": "#ffffff",
+    },
     # Editorial motive: no colour band, warm burgundy accent, headings
     # underlined only beneath the text.
     "editorial": {
@@ -67,7 +80,7 @@ THEMES = {
     },
 }
 
-ACTIVE_THEME = "editorial"
+ACTIVE_THEME = "modern"
 
 _T = THEMES[ACTIVE_THEME]
 STYLE = _T["style"]
@@ -99,21 +112,35 @@ def _header_css():
 .contact .sep {{ color: rgba(255,255,255,0.35); padding: 0 5px; }}
 .contact a {{ color: {BANNER_LINK}; border-bottom: 1px solid {BANNER_LINK}; }}
 """
-    # "editorial" and "classic" share a plain (light) header.
+    # "modern", "editorial" and "classic" share a plain (light) header.
     name_tt = "text-transform: uppercase; letter-spacing: 2px;" if STYLE == "editorial" else "letter-spacing: 0.5px;"
-    border = f"border-bottom: 2px solid {ACCENT};" if STYLE == "editorial" else f"border-bottom: 2.5px solid {ACCENT};"
+    if STYLE == "modern":
+        border = f"border-bottom: 2px solid {PRIMARY};"
+    elif STYLE == "editorial":
+        border = f"border-bottom: 2px solid {ACCENT};"
+    else:
+        border = f"border-bottom: 2.5px solid {ACCENT};"
+    name_color = PRIMARY if STYLE == "modern" else INK
     return f"""
-.header {{ margin: 0 0 5px 0; padding-bottom: 3px; {border} }}
-.name {{ font-size: 21pt; font-weight: 700; {name_tt} color: {INK}; margin: 0; }}
-.headline {{ font-size: 10pt; font-weight: 700; color: {ACCENT}; margin: 2px 0 3px 0;
+.header {{ margin: 0 0 6px 0; padding-bottom: 4px; {border} }}
+.name {{ font-size: 22pt; font-weight: 700; {name_tt} color: {name_color}; margin: 0; }}
+.headline {{ font-size: 10.5pt; font-weight: 700; color: {ACCENT}; margin: 2px 0 4px 0;
     text-transform: uppercase; letter-spacing: 0.6px; }}
-.contact {{ font-size: 8.5pt; color: {MUTED}; line-height: 1.35; }}
+.contact {{ font-size: 9pt; color: {MUTED}; line-height: 1.4; }}
 .contact .sep {{ color: {RULE}; padding: 0 5px; }}
 """
 
 
 def _heading_css():
     """Section-heading styling differs per motive."""
+    if STYLE == "modern":
+        return f"""
+.section h2 {{
+    font-size: 12pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: {PRIMARY}; margin: 0 0 5px 0; padding-bottom: 3px;
+    border-bottom: 1.5px solid {ACCENT};
+}}
+"""
     if STYLE == "editorial":
         return f"""
 .section h2 {{
@@ -153,8 +180,8 @@ html {{ -weasy-hyphens: none; }}
 body {{
     font-family: "Liberation Sans", "Arial", "Noto Sans", sans-serif;
     color: {INK};
-    font-size: 9pt;
-    line-height: 1.2;
+    font-size: 10pt;
+    line-height: 1.24;
     margin: 0;
 }}
 a {{ color: {ACCENT_DARK}; text-decoration: none; border-bottom: 1px solid {ACCENT}; }}
@@ -163,12 +190,12 @@ a {{ color: {ACCENT_DARK}; text-decoration: none; border-bottom: 1px solid {ACCE
 {_header_css()}
 
 /* ---------- Sections ---------- */
-.section {{ margin-top: 2px; }}
+.section {{ margin-top: 4px; }}
 {_heading_css()}
 p.summary {{ margin: 0; text-align: justify; }}
 
 /* ---------- Entries (experience / education) ---------- */
-.entry {{ margin-bottom: 3px; }}
+.entry {{ margin-bottom: 4px; }}
 .entry:last-child {{ margin-bottom: 0; }}
 .entry-head {{
     display: flex;
@@ -176,15 +203,17 @@ p.summary {{ margin: 0; text-align: justify; }}
     align-items: baseline;
     gap: 12px;
 }}
-.entry-title {{ font-weight: 700; font-size: 10pt; color: {INK}; }}
-.entry-org {{ font-size: 9pt; color: {ORG_COLOR}; font-weight: 700; }}
+.entry-title {{ font-weight: 700; font-size: 10.5pt; color: {INK}; }}
+.entry-org {{ font-size: 10pt; color: {ORG_COLOR}; font-weight: 700; }}
 .entry-dates {{
-    font-size: 8.5pt;
+    font-size: 9pt;
     color: {MUTED};
     white-space: nowrap;
     font-weight: 600;
 }}
-.entry-sub {{ font-size: 9pt; color: {MUTED}; margin: 1px 0 2px 0; }}
+.entry-sub {{ font-size: 10pt; color: {MUTED}; margin: 1px 0 3px 0; }}
+.entry-loc {{ font-size: 10pt; color: {MUTED}; font-weight: 400; }}
+.entry.compact {{ margin-bottom: 3px; }}
 ul.bullets {{ margin: 2px 0 0 0; padding-left: 15px; }}
 ul.bullets li {{ margin: 0; padding-left: 2px; }}
 ul.bullets li::marker {{ color: {ACCENT}; }}
@@ -251,9 +280,20 @@ def render_section(title, inner):
 def render_experience(cv):
     rows = []
     for e in cv["experience"]:
+        loc = f' <span class="entry-loc">— {esc(e["location"])}</span>' if e.get("location") else ""
+        if e.get("compact"):
+            # Older / minor roles: a single scannable line (role — org, dates).
+            rows.append(
+                f'<div class="entry compact">'
+                f'<div class="entry-head">'
+                f'<span><span class="entry-title">{esc(e["role"])}</span>'
+                f' <span class="entry-org">— {esc(e.get("org",""))}</span>{loc}</span>'
+                f'<span class="entry-dates">{esc(e["dates"])}</span>'
+                f'</div>'
+                f'</div>'
+            )
+            continue
         bullets = "".join(f"<li>{esc(b)}</li>" for b in e["bullets"])
-        org_bits = [b for b in [e.get("org"), e.get("location")] if b]
-        sub = " — ".join(org_bits)
         rows.append(
             f'<div class="entry">'
             f'<div class="entry-head">'
@@ -324,7 +364,6 @@ def build_html(cv):
         + render_education(cv)
         + render_skills(cv)
         + render_languages(cv)
-        + render_certifications(cv)
         + render_interests(cv)
     )
     if cv.get("footer"):
