@@ -4,8 +4,8 @@
 Kept as structured data so both language versions share the exact same,
 ATS-friendly layout and only the text differs.
 
-Primary focus: 3D modelling / product design, with Front-end Development & IT
-as a versatile secondary track.
+Primary focus: 3D modelling / product design, with Front-end Development, IT
+and International Marketing as complementary tracks.
 """
 
 # Shared contact details (identical in both versions).
@@ -23,7 +23,10 @@ CV_EN = {
     "lang": "en",
     "contact": CONTACT,
     "location": "Warsaw, Poland",
-    "headline": "3D Modeler & Product Designer  •  Front-end Developer  •  IT  •  Marketing",
+    "headline": (
+        "3D Modeler & Product Designer  •  Front-end Developer  •  IT  •  "
+        "International Marketing (events, trade fairs)"
+    ),
     "labels": {
         "linkedin": "LinkedIn",
         "portfolio": "Portfolio",
@@ -38,12 +41,12 @@ CV_EN = {
         "present": "Present",
     },
     "summary": (
-        "3D modeler and product designer with commercial experience across game-ready assets, "
-        "functional 3D-printed automotive parts and music production. Skilled across Blender, "
-        "3ds Max, Maya, SolidWorks, Fusion 360 and Rhino 3D, with a solid Front-end Development "
-        "base (web, IT, cybersecurity) and several years of B2B sales and marketing experience — "
-        "including brand launches, trade-fair organisation and client relationship management. "
-        "Open to roles in 3D/product design, IT or marketing, including internships."
+        "3D modeler and product designer with commercial work in game-ready assets, "
+        "functional 3D-printed automotive parts and music production. Strong toolset across "
+        "Blender, 3ds Max, Maya, SolidWorks, Fusion 360 and Rhino 3D, plus a Front-end "
+        "Development base (web, IT, cybersecurity) and years of international B2B marketing — "
+        "brand launches, events and trade fairs. Open to roles in 3D/product design, IT or "
+        "international marketing, including internships."
     ),
     "experience": [
         {
@@ -52,10 +55,9 @@ CV_EN = {
             "location": "Remote",
             "dates": "2023 – Present",
             "bullets": [
-                "Design and produce game-ready 3D models, including ~10 car models for racing titles such as Assetto Corsa.",
-                "Design and 3D-print 10+ functional automotive parts; one is currently being reproduced in glass fibre for production.",
-                "Build technical CAD models for automotive use and abstract 3D assets for games and bespoke client projects.",
-                "Deliver commercial 3D work end-to-end, from concept to final model or print.",
+                "Produced ~10 game-ready car models for racing titles such as Assetto Corsa.",
+                "Designed and 3D-printed 10+ functional automotive parts; one is being reproduced in glass fibre for production.",
+                "Deliver commercial CAD and 3D work end-to-end, from concept to final model or print.",
             ],
         },
         {
@@ -65,7 +67,7 @@ CV_EN = {
             "dates": "2023 – Mar 2026",
             "bullets": [
                 "Introduced 20+ foreign suppliers and brands to the Polish and CEE markets.",
-                "Organised 4 industry trade fairs in Poland and coordinated B2B meetings.",
+                "Organised 4 industry trade fairs in Poland and coordinated international B2B events and meetings.",
                 "Conducted market research to identify new opportunities and partners.",
             ],
         },
@@ -75,9 +77,8 @@ CV_EN = {
             "location": "Warsaw, Poland",
             "dates": "2020 – 2023",
             "bullets": [
-                "Monitored and maintained marketing and customer databases.",
-                "Acquired new clients and business partners.",
-                "Provided IT support across the team.",
+                "Maintained marketing and customer databases; acquired new clients and partners.",
+                "Provided day-to-day IT support across the team.",
             ],
         },
         {
@@ -120,13 +121,6 @@ CV_EN = {
             "dates": "2021 – 2023",
             "note": "",
         },
-        {
-            "degree": "High School Diploma",
-            "org": "Liceum nr 40 / Nauka i Wiedza Foundation",
-            "location": "Warsaw, Poland",
-            "dates": "2017 – 2020",
-            "note": "",
-        },
     ],
     "skills": [
         {"group": "3D Modelling & CAD", "items": "Blender, 3ds Max, Maya, SolidWorks, Fusion 360, Rhino 3D; 3D printing, product design, game assets; Photoshop"},
@@ -139,14 +133,14 @@ CV_EN = {
         {"name": "Polish", "level": "Native"},
         {"name": "English", "level": "Advanced (C1, TOEFL certified)"},
         {"name": "Spanish", "level": "Advanced (C1)"},
-        {"name": "Japanese", "level": "Elementary (A2)"},
-        {"name": "French", "level": "Elementary (A2)"},
-        {"name": "Italian", "level": "Basic (A1)"},
+        {"name": "Basics", "level": "Japanese (A2), French (A2), Italian (A1)"},
     ],
     "certifications": [
         "TOEFL English Certificate",
     ],
-    "interests": "Travel · Automotive engineering & motorsport · Basketball · 3D printing & product design",
+    # Dropped from the main layout to free white space for a scannable one-pager;
+    # kept in data in case we re-enable later.
+    "interests": "",
     "footer": "",
 }
 
@@ -154,7 +148,10 @@ CV_PL = {
     "lang": "pl",
     "contact": CONTACT,
     "location": "Warszawa, Polska",
-    "headline": "Modelarz 3D i projektant produktu  •  Front-end Developer  •  IT  •  Marketing",
+    "headline": (
+        "Modelarz 3D i projektant produktu  •  Front-end Developer  •  IT  •  "
+        "Marketing międzynarodowy (eventy, targi)"
+    ),
     "labels": {
         "linkedin": "LinkedIn",
         "portfolio": "Portfolio",
@@ -169,12 +166,11 @@ CV_PL = {
         "present": "obecnie",
     },
     "summary": (
-        "Modelarz 3D i projektant produktu z komercyjnym doświadczeniem w tworzeniu modeli do gier, "
-        "funkcjonalnych drukowanych 3D części samochodowych oraz produkcji muzycznej. Biegły w "
-        "programach Blender, 3ds Max, Maya, SolidWorks, Fusion 360 i Rhino 3D, z solidną podstawą "
-        "Front-end Development (web, IT, cyberbezpieczeństwo) i kilkuletnim doświadczeniem w "
-        "sprzedaży i marketingu B2B (wprowadzanie marek, organizacja targów, relacje z klientami). "
-        "Otwarty na role w obszarze 3D/projektowania produktu, IT lub marketingu, w tym staże."
+        "Modelarz 3D i projektant produktu z komercyjnym doświadczeniem w modelach do gier, "
+        "drukowanych 3D częściach samochodowych i produkcji muzycznej. Biegły w Blender, 3ds Max, "
+        "Maya, SolidWorks, Fusion 360 i Rhino 3D; podstawa Front-end Development (web, IT) oraz "
+        "kilkuletni międzynarodowy marketing B2B — marki, eventy i targi. Otwarty na role w "
+        "3D/projekcie produktu, IT lub marketingu międzynarodowym, w tym staże."
     ),
     "experience": [
         {
@@ -183,10 +179,9 @@ CV_PL = {
             "location": "Zdalnie",
             "dates": "2023 – obecnie",
             "bullets": [
-                "Tworzenie modeli 3D gotowych do gier, w tym ok. 10 modeli samochodów do tytułów wyścigowych, takich jak Assetto Corsa.",
-                "Projektowanie i druk 3D ponad 10 funkcjonalnych części samochodowych; jedna z nich jest obecnie odtwarzana z włókna szklanego do produkcji.",
-                "Budowa technicznych modeli CAD do zastosowań motoryzacyjnych oraz abstrakcyjnych obiektów 3D do gier i indywidualnych projektów klientów.",
-                "Realizacja komercyjnych zleceń 3D od koncepcji po gotowy model lub wydruk.",
+                "Ok. 10 modeli samochodów gotowych do gier wyścigowych, m.in. Assetto Corsa.",
+                "Ponad 10 funkcjonalnych części samochodowych drukowanych 3D; jedna jest odtwarzana z włókna szklanego do produkcji.",
+                "Realizacja komercyjnych zleceń CAD/3D od koncepcji po gotowy model lub wydruk.",
             ],
         },
         {
@@ -196,8 +191,8 @@ CV_PL = {
             "dates": "2023 – marzec 2026",
             "bullets": [
                 "Wprowadzenie ponad 20 zagranicznych dostawców i marek na rynek polski i CEE.",
-                "Organizacja 4 targów branżowych w Polsce oraz koordynacja spotkań B2B.",
-                "Prowadzenie badań rynku w celu identyfikacji szans i partnerów.",
+                "Organizacja 4 targów branżowych w Polsce oraz koordynacja międzynarodowych eventów i spotkań B2B.",
+                "Badania rynku w celu identyfikacji szans i partnerów.",
             ],
         },
         {
@@ -206,9 +201,8 @@ CV_PL = {
             "location": "Warszawa, Polska",
             "dates": "2020 – 2023",
             "bullets": [
-                "Monitorowanie i utrzymanie baz danych marketingowych i klientów.",
-                "Pozyskiwanie nowych klientów oraz partnerów biznesowych.",
-                "Wsparcie IT w zespole.",
+                "Utrzymanie baz marketingowych i klientów; pozyskiwanie nowych partnerów.",
+                "Bieżące wsparcie IT w zespole.",
             ],
         },
         {
@@ -251,13 +245,6 @@ CV_PL = {
             "dates": "2021 – 2023",
             "note": "",
         },
-        {
-            "degree": "Świadectwo maturalne",
-            "org": "Liceum nr 40 / Fundacja Nauka i Wiedza",
-            "location": "Warszawa, Polska",
-            "dates": "2017 – 2020",
-            "note": "",
-        },
     ],
     "skills": [
         {"group": "Modelowanie 3D i CAD", "items": "Blender, 3ds Max, Maya, SolidWorks, Fusion 360, Rhino 3D; druk 3D, projektowanie produktu, obiekty do gier; Photoshop"},
@@ -270,16 +257,13 @@ CV_PL = {
         {"name": "Polski", "level": "Ojczysty"},
         {"name": "Angielski", "level": "Zaawansowany (C1, certyfikat TOEFL)"},
         {"name": "Hiszpański", "level": "Zaawansowany (C1)"},
-        {"name": "Japoński", "level": "Podstawowy (A2)"},
-        {"name": "Francuski", "level": "Podstawowy (A2)"},
-        {"name": "Włoski", "level": "Podstawowy (A1)"},
+        {"name": "Podstawy", "level": "Japoński (A2), Francuski (A2), Włoski (A1)"},
     ],
     "certifications": [
         "Certyfikat języka angielskiego TOEFL",
     ],
-    "interests": "Podróże · Inżynieria samochodowa i motorsport · Koszykówka · Druk 3D i projektowanie produktu",
+    "interests": "",
     "footer": (
-        "Wyrażam zgodę na przetwarzanie moich danych osobowych na potrzeby procesu rekrutacji "
-        "(zgodnie z RODO – Rozporządzenie UE 2016/679)."
+        "Wyrażam zgodę na przetwarzanie moich danych osobowych na potrzeby rekrutacji (RODO – UE 2016/679)."
     ),
 }
