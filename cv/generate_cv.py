@@ -8,8 +8,8 @@ and Indeed (single-column, skills-first hybrid, standard headings, body
 Usage:
     python3 generate_cv.py
 Outputs (repo root):
-    Jan_Blaz_CV_EN.pdf
-    Jan_Blaz_CV_PL.pdf
+    Jan_Blaz_CV_EN.pdf / Jan_Blaz_CV_PL.pdf           — single-column (ATS)
+    Jan_Blaz_CV_EN_2col.pdf / Jan_Blaz_CV_PL_2col.pdf — two-column (human-facing)
 """
 
 import html
@@ -361,7 +361,8 @@ def render_interests(cv):
 
 def build_html(cv):
     # Skills-first hybrid (2026 recommended for cross-domain / keyword-dense profiles):
-    # Summary → Skills → Experience → Education → Languages → Interests.
+    # Summary → Skills → Experience → Education → Languages.
+    # Interests live in the 2-column human-facing variant (more room in the sidebar).
     body = (
         render_header(cv)
         + render_section(cv["labels"]["summary"], f'<p class="summary">{esc(cv["summary"])}</p>')
@@ -369,7 +370,6 @@ def build_html(cv):
         + render_experience(cv)
         + render_education(cv)
         + render_languages(cv)
-        + render_interests(cv)
     )
     if cv.get("footer"):
         body += f'<p class="footer">{esc(cv["footer"])}</p>'
@@ -380,14 +380,179 @@ def build_html(cv):
     )
 
 
+# ---------------------------------------------------------------------------
+# Two-column (human-facing) layout.
+# Full-width header + left sidebar (skills/languages/interests) | main column
+# (summary/experience/education). Prefer for networking / email / interview;
+# keep the single-column PDFs for ATS uploads.
+# ---------------------------------------------------------------------------
+CSS_2COL = f"""
+@page {{
+    size: A4;
+    margin: 10mm 12mm 9mm 12mm;
+}}
+* {{ box-sizing: border-box; }}
+html {{ -weasy-hyphens: none; }}
+body {{
+    font-family: "Liberation Sans", "Arial", "Noto Sans", sans-serif;
+    color: {INK};
+    font-size: 10pt;
+    line-height: 1.32;
+    margin: 0;
+}}
+a {{ color: {ACCENT_DARK}; text-decoration: none; border-bottom: 1px solid {ACCENT}; }}
+
+.header {{
+    margin: 0 0 10px 0;
+    padding-bottom: 7px;
+    border-bottom: 3px solid {PRIMARY};
+}}
+.name {{
+    font-size: 22pt; font-weight: 700; letter-spacing: 0.3px;
+    color: {PRIMARY}; margin: 0;
+}}
+.headline {{
+    font-size: 9.5pt; font-weight: 700; color: {MUTED};
+    margin: 3px 0 5px 0; letter-spacing: 0.15px;
+}}
+.contact {{ font-size: 9pt; color: {MUTED}; line-height: 1.4; }}
+.contact .sep {{ color: {RULE}; padding: 0 5px; }}
+
+.layout {{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}}
+.sidebar, .main {{
+    display: table-cell;
+    vertical-align: top;
+}}
+.sidebar {{
+    width: 32%;
+    padding-right: 12px;
+    border-right: 2px solid {PRIMARY};
+}}
+.main {{
+    width: 68%;
+    padding-left: 14px;
+}}
+
+.section {{ margin-top: 0; margin-bottom: 11px; }}
+.section:last-child {{ margin-bottom: 0; }}
+.section h2 {{
+    font-size: 9.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: #ffffff; background: {PRIMARY};
+    margin: 0 0 6px 0; padding: 3px 7px;
+}}
+
+p.summary {{ margin: 0; }}
+
+.skill-block {{ margin-bottom: 7px; }}
+.skill-block:last-child {{ margin-bottom: 0; }}
+.skill-label {{
+    font-weight: 700; font-size: 9pt; color: {INK};
+    margin: 0 0 1px 0;
+}}
+.skill-items {{
+    font-size: 8.5pt; color: {MUTED}; margin: 0; line-height: 1.3;
+}}
+
+.lang-row {{
+    font-size: 9pt; color: {MUTED}; margin: 0 0 3px 0;
+}}
+.lang-row b {{ color: {INK}; }}
+
+.entry {{ margin-bottom: 8px; }}
+.entry:last-child {{ margin-bottom: 0; }}
+.entry-head {{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+}}
+.entry-title {{ font-weight: 700; font-size: 10pt; color: {INK}; }}
+.entry-org {{ font-size: 9pt; color: {PRIMARY}; font-weight: 700; }}
+.entry-dates {{
+    font-size: 8.5pt; color: {MUTED}; white-space: nowrap; font-weight: 600;
+}}
+.entry-sub {{ font-size: 9pt; color: {MUTED}; margin: 1px 0 2px 0; }}
+.entry-loc {{ font-size: 9pt; color: {MUTED}; font-weight: 400; }}
+.entry.compact {{ margin-bottom: 4px; }}
+ul.bullets {{ margin: 2px 0 0 0; padding-left: 14px; }}
+ul.bullets li {{ margin: 1px 0; padding-left: 1px; font-size: 9.5pt; }}
+ul.bullets li::marker {{ color: {PRIMARY}; }}
+
+.interests {{ margin: 0; color: {MUTED}; font-size: 9pt; }}
+.footer {{
+    margin: 8px 0 0 0;
+    padding-top: 4px;
+    border-top: 1px solid {RULE};
+    font-size: 6.5pt;
+    color: {MUTED};
+    font-style: italic;
+    line-height: 1.25;
+}}
+"""
+
+
+def render_skills_sidebar(cv):
+    blocks = "".join(
+        f'<div class="skill-block">'
+        f'<div class="skill-label">{esc(s["group"])}</div>'
+        f'<p class="skill-items">{esc(s["items"])}</p>'
+        f'</div>'
+        for s in cv["skills"]
+    )
+    return render_section(cv["labels"]["skills"], blocks)
+
+
+def render_languages_sidebar(cv):
+    rows = "".join(
+        f'<p class="lang-row"><b>{esc(l["name"])}</b> — {esc(l["level"])}</p>'
+        for l in cv["languages"]
+    )
+    return render_section(cv["labels"]["languages"], rows)
+
+
+def build_html_2col(cv):
+    sidebar = (
+        render_skills_sidebar(cv)
+        + render_languages_sidebar(cv)
+        + render_interests(cv)
+    )
+    main = (
+        render_section(cv["labels"]["summary"], f'<p class="summary">{esc(cv["summary"])}</p>')
+        + render_experience(cv)
+        + render_education(cv)
+    )
+    body = (
+        render_header(cv)
+        + f'<div class="layout">'
+        f'<div class="sidebar">{sidebar}</div>'
+        f'<div class="main">{main}</div>'
+        f'</div>'
+    )
+    if cv.get("footer"):
+        body += f'<p class="footer">{esc(cv["footer"])}</p>'
+    return (
+        f'<!DOCTYPE html><html lang="{cv["lang"]}"><head>'
+        f'<meta charset="utf-8"><style>{CSS_2COL}</style></head>'
+        f'<body>{body}</body></html>'
+    )
+
+
 def main():
     out_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     targets = [
-        (CV_EN, os.path.join(out_dir, "Jan_Blaz_CV_EN.pdf")),
-        (CV_PL, os.path.join(out_dir, "Jan_Blaz_CV_PL.pdf")),
+        (CV_EN, "Jan_Blaz_CV_EN.pdf", build_html),
+        (CV_PL, "Jan_Blaz_CV_PL.pdf", build_html),
+        (CV_EN, "Jan_Blaz_CV_EN_2col.pdf", build_html_2col),
+        (CV_PL, "Jan_Blaz_CV_PL_2col.pdf", build_html_2col),
     ]
-    for cv, path in targets:
-        HTML(string=build_html(cv)).write_pdf(path)
+    for cv, filename, builder in targets:
+        path = os.path.join(out_dir, filename)
+        HTML(string=builder(cv)).write_pdf(path)
         print("Wrote", path)
 
 

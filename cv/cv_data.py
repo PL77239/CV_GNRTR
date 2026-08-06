@@ -140,7 +140,7 @@ CV_EN = {
     ],
     # Dropped from the main layout to free white space for a scannable one-pager;
     # kept in data in case we re-enable later.
-    "interests": "",
+    "interests": "Travel · Automotive engineering & motorsport · Basketball · 3D printing & product design",
     "footer": "",
 }
 
@@ -262,7 +262,7 @@ CV_PL = {
     "certifications": [
         "Certyfikat języka angielskiego TOEFL",
     ],
-    "interests": "",
+    "interests": "Podróże · Inżynieria samochodowa i motorsport · Koszykówka · Druk 3D i projektowanie produktu",
     "footer": (
         "Wyrażam zgodę na przetwarzanie moich danych osobowych na potrzeby rekrutacji (RODO – UE 2016/679)."
     ),
