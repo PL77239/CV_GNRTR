@@ -8,8 +8,10 @@ and Indeed (single-column, skills-first hybrid, standard headings, body
 Usage:
     python3 generate_cv.py
 Outputs (repo root):
-    Jan_Blaz_CV_EN.pdf / Jan_Blaz_CV_PL.pdf           — single-column (ATS)
-    Jan_Blaz_CV_EN_2col.pdf / Jan_Blaz_CV_PL_2col.pdf — two-column (human-facing)
+    Jan_Blaz_CV_EN.pdf / Jan_Blaz_CV_PL.pdf                 — single-column (ATS)
+    Jan_Blaz_CV_EN_2col.pdf / Jan_Blaz_CV_PL_2col.pdf       — two-column light
+    Jan_Blaz_CV_EN_2col_panel.pdf / ..._PL_2col_panel.pdf   — dark sidebar (template-like)
+    Jan_Blaz_CV_EN_2col_slate.pdf / ..._PL_2col_slate.pdf   — slate-blue sidebar
 """
 
 import html
@@ -18,6 +20,7 @@ import os
 from weasyprint import HTML
 
 from cv_data import CV_EN, CV_PL
+from layouts_2col import build_html_panel, build_html_slate
 
 # ---------------------------------------------------------------------------
 # Visual motives. Switch with ACTIVE_THEME.
@@ -549,6 +552,10 @@ def main():
         (CV_PL, "Jan_Blaz_CV_PL.pdf", build_html),
         (CV_EN, "Jan_Blaz_CV_EN_2col.pdf", build_html_2col),
         (CV_PL, "Jan_Blaz_CV_PL_2col.pdf", build_html_2col),
+        (CV_EN, "Jan_Blaz_CV_EN_2col_panel.pdf", build_html_panel),
+        (CV_PL, "Jan_Blaz_CV_PL_2col_panel.pdf", build_html_panel),
+        (CV_EN, "Jan_Blaz_CV_EN_2col_slate.pdf", build_html_slate),
+        (CV_PL, "Jan_Blaz_CV_PL_2col_slate.pdf", build_html_slate),
     ]
     for cv, filename, builder in targets:
         path = os.path.join(out_dir, filename)
